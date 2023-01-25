@@ -1,5 +1,5 @@
+import Card from '../Card/Card';
 import '../CardList/Style.css';
-import Card from '../Card/Card.jsx';
 
 export const CardList = ({ data, curentUser, onProductLike }) => {
 
@@ -7,10 +7,12 @@ export const CardList = ({ data, curentUser, onProductLike }) => {
 
     return (
         <div className='cards__list'>
+            {console.log(data)}
             {data.map((item, index) => (
                 <Card {...item} key={`${index}-${item.name}`} curentUser={curentUser} onProductLike={onProductLike} />
             ))}
         </div>
+
     )
 }
 

@@ -9,6 +9,11 @@ import { Games } from './xxx';
 import { SearchInfo } from '../App/Search/Search.jsx';
 import api from '../../utils/Api.jsx';
 import useDebounce from '../../hocs/useDebaunce';
+import { CatalogPage } from '../../pages/product/catalog/catalog.jsx';
+import { ProductPage } from '../../pages/product/product.jsx';
+import { Navigate, Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { NoMatchFound } from '../../pages/NoMatchFound/NoMatchFound';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -25,7 +30,7 @@ function App() {
     api.search(searchQuery.toUpperCase())
       .then((cardsFromApi) => {
         setCards(cardsFromApi)
-          // .catch((err) => console.log(err))
+        // .catch((err) => console.log(err))
       })
   }, [debounceSearchQuery])
 
@@ -71,10 +76,23 @@ function App() {
   // }, [searchQuery])
   return (
     <>
+      {console.log('1111111111111', cards)}
       <div className="App">
         <Header changeInput={handleRecuest} user={curentUser} onUpdateUser={handleUpdateUser} />
         <SearchInfo searchText={handleFormSubmit} searchCount={cards.length} />
-        <CardList data={cards} curentUser={curentUser} onProductLike={handleProductLike} />
+        <Routes>
+          <Route path='/' element={
+            <CatalogPage data={cards} curentUser={curentUser} handleProductLike={handleProductLike} />
+          }>
+          </Route>
+          <Route path='/product' element={<ProductPage />}></Route>
+          <Route path='/product/:productId' element={<ProductPage />}></Route>
+          <Route path='*' element={<NoMatchFound />}></Route>
+          
+        </Routes>
+        {/* <Navigate to={'product'} replace /> */}
+
+        {/* <CardList data={cards} curentUser={curentUser} onProductLike={handleProductLike} /> */}
         <Footer />
       </div>
     </>

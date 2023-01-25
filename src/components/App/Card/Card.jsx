@@ -4,6 +4,7 @@ import Like from '../../../assets/image/save.svg';
 import '../Card/Style.css';
 import cn from 'classnames';
 import { ReactComponent as Save } from '../../../assets/image/save.svg';
+import { Link } from "react-router-dom";
 
 function Card({   name,
     price,
@@ -43,7 +44,7 @@ function Card({   name,
             </div>
 
             <img className='card__pictures' src={pictures} />
-            <a href='/product' className='card__link'>
+            <Link to={`/product/${_id}`} className='card__link'>
                 <div className='card__desc'>
                     {!!discount && <span className={!!discount ? 'old__price' : ''}>{price}&nbsp;₽</span>}<br />
                     <span className='price'>{discount_price}&nbsp;₽</span><br />
@@ -52,7 +53,7 @@ function Card({   name,
                         {name}
                     </p>
                 </div>
-            </a>
+            </Link>
             <a href='#' className='card__cart'>
                 В корзину
             </a>

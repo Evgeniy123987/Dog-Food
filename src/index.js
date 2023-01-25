@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App/App.jsx';
 import reportWebVitals from './reportWebVitals';
-import { ProductPage } from './pages/product/product';
+import { ProductPage } from './pages/product/product.jsx';
+// import * as ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 const element = <div className="footer">
     <div className='footer__conteiner'>
@@ -18,10 +20,10 @@ const element = <div className="footer">
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
+    <BrowserRouter>
         <App />
-        {/* <ProductPage /> */}
-    </React.StrictMode>
+    </BrowserRouter>
+    // <ProductPage />
 );
 
 
